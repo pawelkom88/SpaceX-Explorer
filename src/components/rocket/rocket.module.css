@@ -1,0 +1,13 @@
+.rocket {
+  animation: flyAcross 20s cubic-bezier(0, 0.76, 0.98, 0.14) infinite;
+  overflow: hidden;
+}
+
+@keyframes flyAcross {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -100vh);
+  }
+}
