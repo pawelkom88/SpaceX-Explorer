@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# SpaceX Explorer: My Learning Journey
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+import { Badge } from '@/components/ui/badge'
 
-Currently, two official plugins are available:
+<Badge variant="outline">Learning Project</Badge>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a personal learning endeavor to explore and gain hands-on experience with modern web development tools and technologies, including:
 
-## Expanding the ESLint configuration
+- React
+- GraphQL
+- Apollo Client
+- Material UI
+- TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Project Overview
 
-- Configure the top-level `parserOptions` property like this:
+The SpaceX Explorer app utilizes the SpaceX GraphQL API to display information about launches, rockets, and missions. It serves as a playground for me to:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Practice querying a GraphQL API
+2. Implement Apollo Client for state management
+3. Create responsive UI components with Material UI
+4. Apply TypeScript for enhanced type safety
+
+## Key Learning Objectives
+
+- [ ] Set up a React project with TypeScript
+- [ ] Integrate Apollo Client for GraphQL operations
+- [ ] Generate TypeScript types from GraphQL schema
+- [ ] Develop reusable UI components with Material UI
+- [ ] Implement efficient data fetching and caching strategies
+
+## Getting Started
+
+```bash
+npm install
+npm run generate # Generate TypeScript types from GraphQL schema
+npm start
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Notes
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+This project is not intended for production use. It's a sandbox for experimenting with the aforementioned technologies and may contain incomplete features or non-optimized code as I learn and iterate.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Feel free to explore the code and suggest improvements!
