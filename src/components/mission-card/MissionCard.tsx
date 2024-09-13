@@ -27,17 +27,19 @@ interface MissionCardProps {
 }
 
 export function MissionCard({ launch }: MissionCardProps) {
+  const { id, mission_name, details, launch_year, launch_success, links, rocket } =
+    launch;
   return (
-    <Link className={classes["card-link"]} to={`/mission/${launch.id}`}>
-      <Card className={classes.card} key={launch.id} sx={cardProps}>
-        <VideoEmbed videoLink={launch.links.video_link} />
+    <Link className={classes["card-link"]} to={`/mission/${id}`}>
+      <Card className={classes.card} key={id} sx={cardProps}>
+        <VideoEmbed videoLink={links.video_link} />
         <CardContent sx={{ padding: 3 }}>
-          <MissionTitle title={launch.mission_name} />
-          <MissionDetails details={launch.details} />
-          <CardList icon={<Rocket />} text={launch.rocket.rocket_name} />
-          <List component="ul">
-            <CardList icon={<DateRange />} text={launch.launch_year} />
-            <LaunchStatus success={launch.launch_success} />
+          <MissionTitle title={mission_name} />
+          <MissionDetails details={details} />
+          <List component="ul" disablePadding sx={{marginTop: 2}}>
+            <Item icon={<Rocket />} text={rocket.rocket_name} />
+            <Item icon={<DateRange />} text={launch_year} />
+            <LaunchStatus success={launch_success} />
           </List>
         </CardContent>
       </Card>
@@ -80,25 +82,23 @@ interface MissionDetailsProps {
 
 function MissionDetails({ details }: MissionDetailsProps) {
   return (
-    <Typography variant="body2" sx={{ color: "text.primary" }}>
+    <Typography height={CARD_HEIGHT / 7} variant="body2" sx={{ color: "text.primary" }}>
       {details ? `${details.slice(0, 100)} ...` : "No details available"}
     </Typography>
   );
 }
 
-interface CardListProps {
+interface ItemProps {
   icon: React.ReactElement;
   text: string;
 }
 
-function CardList({ icon, text }: CardListProps) {
+function Item({ icon, text }: ItemProps) {
   return (
-    <List component="ul">
-      <ListItem>
-        {icon}
-        <ListItemText sx={{ marginLeft: 1, fontStyle: "italic" }}>{text}</ListItemText>
-      </ListItem>
-    </List>
+    <ListItem>
+      {icon}
+      <ListItemText sx={{ marginLeft: 1, fontStyle: "italic" }}>{text}</ListItemText>
+    </ListItem>
   );
 }
 

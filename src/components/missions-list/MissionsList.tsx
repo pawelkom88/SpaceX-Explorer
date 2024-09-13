@@ -12,12 +12,14 @@ const gridProps = {
   mt: 5,
   container: true,
   spacing: 2,
+  marginBottom: 10,
   gap: 5,
 };
 
 export function MissionList() {
   const { loading, error, data } = useQuery(GET_LANCHES, {
     variables: {
+      // todo: set limit via state add filters, pagination
       limit: 6,
     },
   });
