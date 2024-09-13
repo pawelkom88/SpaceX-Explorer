@@ -1,9 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { Typography } from "@mui/material";
+import { Container, Pagination, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { GET_LANCHES } from "../../queries/missions";
+import { usePagination } from "../../hooks/usePagination";
+import { GET_LAUNCHES } from "../../queries/missions";
 import { CardSkelton } from "../card-skeleton/CardSkelton";
 import { MissionCard } from "../mission-card/MissionCard";
+import { NumOfEntriesDropdown } from "../number-of-entries-dropdown/NumOfEntriesDropdown";
+import { PaginationControls } from "../pagination-controls/PaginationControls";
 
 const gridProps = {
   maxWidth: 1200,
@@ -17,25 +20,42 @@ const gridProps = {
 };
 
 export function MissionList() {
-  const { loading, error, data } = useQuery(GET_LANCHES, {
+  const { page, setPage, limit, handleLimitChange, offset } = usePagination(6);
+  const { loading, error, data } = useQuery(GET_LAUNCHES, {
     variables: {
-      // todo: set limit via state add filters, pagination
-      limit: 6,
+      offset,
+      limit,
     },
   });
+  const totalItems: number = data?.launchesPastResult?.result?.totalCount || 100;
+  const totalPages: number = Math.ceil(totalItems / limit);
 
   return (
-    <Grid {...gridProps}>
-      {loading ? (
-        <CardSkelton />
-      ) : (
-        <>
-          {data?.launches.map((launch) => (
-            <MissionCard key={launch.id} launch={launch} />
-          ))}
-        </>
-      )}
-      {error && <Typography color="error">Error: {error.message}</Typography>}
-    </Grid>
+    <>
+      <Container sx={{ maxWidth: gridProps.maxWidth }}>
+        {/* filterd here */}
+        <NumOfEntriesDropdown limit={limit} onLimitChange={handleLimitChange} />
+        {/* filterd here */}
+        <Grid {...gridProps}>
+          {loading ? (
+            <CardSkelton length={limit} />
+          ) : (
+            <>
+              {data?.launches.map((launch) => (
+                <MissionCard key={launch.id} launch={launch} />
+              ))}
+            </>
+          )}
+          {error && <Typography color="error">Error: {error.message}</Typography>}
+        </Grid>
+      </Container>
+      <Pagination
+        sx={{ marginBottom: 5, display: "flex", justifyContent: "center" }}
+        count={totalPages}
+        page={page}
+        onChange={(_, page) => setPage(page)}
+      />
+      <PaginationControls page={page} setPage={setPage} totalPages={totalPages} />
+    </>
   );
 }
