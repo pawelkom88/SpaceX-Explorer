@@ -1,8 +1,10 @@
 import { gql } from "@apollo/client";
 
-export const GET_LANCHES = gql`
-  query Launches($limit: Int) {
-    launches(limit: $limit) {
+// !! if query repeats use fragments
+
+export const GET_LAUNCHES = gql`
+  query Launches($offset: Int = 6, $limit: Int = 6) {
+    launches(offset: $offset, limit: $limit) {
       mission_name
       id
       launch_date_local
@@ -12,13 +14,12 @@ export const GET_LANCHES = gql`
       details
       rocket {
         rocket_name
-        rocket_type
       }
       launch_year
-      launch_success
-      launch_site {
-        site_id
-        site_name
+    }
+    launchesPastResult {
+      result {
+        totalCount
       }
     }
   }
