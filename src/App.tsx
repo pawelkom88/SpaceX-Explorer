@@ -9,6 +9,7 @@ import { MissionList } from "./components/missions-list/MissionsList";
 // - filters
 // - pagination
 // - types
+// - use useLazyQuery for fetching launch mission details
 
 export default function App() {
   return (

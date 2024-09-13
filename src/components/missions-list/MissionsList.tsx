@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { Container, Pagination, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import { Launch } from "../../gql/graphql";
 import { usePagination } from "../../hooks/usePagination";
 import { GET_LAUNCHES } from "../../queries/missions";
 import { CardSkelton } from "../card-skeleton/CardSkelton";
@@ -26,6 +27,7 @@ export function MissionList() {
       offset,
       limit,
     },
+    // pollInterval: 500,
   });
   const totalItems: number = data?.launchesPastResult?.result?.totalCount || 100;
   const totalPages: number = Math.ceil(totalItems / limit);
@@ -41,7 +43,7 @@ export function MissionList() {
             <CardSkelton length={limit} />
           ) : (
             <>
-              {data?.launches.map((launch) => (
+              {data?.launches.map((launch: Launch) => (
                 <MissionCard key={launch.id} launch={launch} />
               ))}
             </>
