@@ -1,5 +1,5 @@
 :root {
-  --prmary-clr: #05060f;
+  --primary-clr: #05060f;
   --white: #fff;
 }
 
@@ -11,6 +11,11 @@
   overflow: hidden;
   z-index: -1;
   background: var(--prmary-clr);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .star {
