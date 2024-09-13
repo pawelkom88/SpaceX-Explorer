@@ -12,6 +12,7 @@ const gridProps = {
   mt: 5,
   container: true,
   spacing: 2,
+  gap: 5,
 };
 
 export function MissionList() {
@@ -27,8 +28,8 @@ export function MissionList() {
         <CardSkelton />
       ) : (
         <>
-          {data?.launches.map((launches, index) => (
-            <MissionCard key={launches.id} launches={launches} index={index} />
+          {data?.launches.map((launch) => (
+            <MissionCard key={launch.id} launch={launch} />
           ))}
         </>
       )}
