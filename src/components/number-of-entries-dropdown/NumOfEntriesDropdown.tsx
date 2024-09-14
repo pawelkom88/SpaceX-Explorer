@@ -12,7 +12,7 @@ export function NumOfEntriesDropdown({
   return (
     <Container sx={{ textAlign: "center" }}>
       <InputLabel sx={{ marginBottom: 1 }} id="limit">
-        Number of missions displayed in a grid
+        Number of launches displayed in a grid
       </InputLabel>
       <Select
         sx={{ minWidth: 100 }}
