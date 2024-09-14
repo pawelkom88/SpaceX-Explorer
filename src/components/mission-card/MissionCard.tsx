@@ -19,7 +19,7 @@ import { getYouTubeID } from "../../utils/helpers";
 import classes from "./mission-card.module.css";
 
 const cardProps = {
-  height: CARD_HEIGHT * 1.3,
+  height: CARD_HEIGHT * 1.5,
   maxWidth: CARD_WIDTH,
   boxShadow: "2px 1px 1px 1px rgba(255, 255, 255, 0.2)",
 };
