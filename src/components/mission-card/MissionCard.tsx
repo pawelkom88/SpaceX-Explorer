@@ -17,6 +17,7 @@ import { Launch } from "../../gql/graphql";
 import { CARD_HEIGHT, CARD_WIDTH } from "../../utils/constants";
 import { getYouTubeID } from "../../utils/helpers";
 import classes from "./mission-card.module.css";
+import { RouteConfig } from "../../router/Router";
 
 const cardProps = {
   height: CARD_HEIGHT * 1.5,
@@ -31,7 +32,7 @@ interface MissionCardProps {
 export function MissionCard({ launch }: MissionCardProps) {
   const { id, mission_name, details, launch_year, launch_success, links, rocket } = launch;
   return (
-    <Link className={classes["card-link"]} to={`/mission/${id}`}>
+    <Link className={classes["card-link"]} to={`${RouteConfig.MISSION}/${id}`}>
       <Card className={classes.card} key={id} sx={cardProps}>
         <VideoEmbed videoLink={links?.video_link} />
         <CardContent sx={{ padding: 3 }}>
