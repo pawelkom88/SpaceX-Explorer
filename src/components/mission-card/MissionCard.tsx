@@ -10,8 +10,10 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { Maybe } from "graphql/jsutils/Maybe";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Launch } from "../../gql/graphql";
 import { CARD_HEIGHT, CARD_WIDTH } from "../../utils/constants";
 import { getYouTubeID } from "../../utils/helpers";
 import classes from "./mission-card.module.css";
@@ -23,21 +25,20 @@ const cardProps = {
 };
 
 interface MissionCardProps {
-  launch: any;
+  launch: Launch;
 }
 
 export function MissionCard({ launch }: MissionCardProps) {
-  const { id, mission_name, details, launch_year, launch_success, links, rocket } =
-    launch;
+  const { id, mission_name, details, launch_year, launch_success, links, rocket } = launch;
   return (
     <Link className={classes["card-link"]} to={`/mission/${id}`}>
       <Card className={classes.card} key={id} sx={cardProps}>
-        <VideoEmbed videoLink={links.video_link} />
+        <VideoEmbed videoLink={links?.video_link} />
         <CardContent sx={{ padding: 3 }}>
           <MissionTitle title={mission_name} />
           <MissionDetails details={details} />
-          <List component="ul" disablePadding sx={{marginTop: 2}}>
-            <Item icon={<Rocket />} text={rocket.rocket_name} />
+          <List component="ul" disablePadding sx={{ marginTop: 2 }}>
+            <Item icon={<Rocket />} text={rocket?.rocket_name} />
             <Item icon={<DateRange />} text={launch_year} />
             <LaunchStatus success={launch_success} />
           </List>
@@ -48,7 +49,7 @@ export function MissionCard({ launch }: MissionCardProps) {
 }
 
 interface VideoEmbedProps {
-  videoLink: string;
+  videoLink: Maybe<string>;
 }
 
 function VideoEmbed({ videoLink }: VideoEmbedProps) {
@@ -65,7 +66,7 @@ function VideoEmbed({ videoLink }: VideoEmbedProps) {
 }
 
 interface MissionTitleProps {
-  title: string;
+  title: Maybe<string>;
 }
 
 function MissionTitle({ title }: MissionTitleProps) {
@@ -77,7 +78,7 @@ function MissionTitle({ title }: MissionTitleProps) {
 }
 
 interface MissionDetailsProps {
-  details: string;
+  details: Maybe<string>;
 }
 
 function MissionDetails({ details }: MissionDetailsProps) {
@@ -90,7 +91,7 @@ function MissionDetails({ details }: MissionDetailsProps) {
 
 interface ItemProps {
   icon: React.ReactElement;
-  text: string;
+  text: Maybe<string>;
 }
 
 function Item({ icon, text }: ItemProps) {
@@ -103,7 +104,7 @@ function Item({ icon, text }: ItemProps) {
 }
 
 interface LaunchStatusProps {
-  success: boolean;
+  success: Maybe<boolean>;
 }
 
 function LaunchStatus({ success }: LaunchStatusProps) {
