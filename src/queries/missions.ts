@@ -25,3 +25,18 @@ export const GET_LAUNCHES = gql`
     }
   }
 `;
+
+export const GET_LAUNCH = gql`
+  query Launch($launchId: ID!) {
+    launch(id: $launchId) {
+      id
+      launch_date_local
+      links {
+        article_link
+        video_link
+        wikipedia
+      }
+      mission_name
+    }
+  }
+`;
