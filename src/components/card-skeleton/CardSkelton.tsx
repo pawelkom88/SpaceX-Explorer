@@ -1,5 +1,5 @@
 import { Skeleton } from "@mui/material";
-import { CARD_HEIGHT, CARD_WIDTH } from "../../utils/constants";
+import { CARD_WIDTH, cardProps } from "../../utils/constants";
 
 export function CardSkelton({ length = 6 }: { length?: number }) {
   return (
@@ -9,7 +9,7 @@ export function CardSkelton({ length = 6 }: { length?: number }) {
           key={index}
           variant="rectangular"
           width={CARD_WIDTH}
-          height={CARD_HEIGHT}
+          height={cardProps.height}
         />
       ))}
     </>
