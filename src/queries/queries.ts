@@ -37,6 +37,21 @@ export const GET_LAUNCH = gql`
         wikipedia
       }
       mission_name
+      rocket {
+        rocket {
+          id
+        }
+      }
     }
   }
 `;
+
+
+export const GET_ROCKET = gql`
+  query Rocket($rocketId: ID!) {
+    rocket(id: $rocketId) {
+      id
+      description
+    }
+  }
+`
