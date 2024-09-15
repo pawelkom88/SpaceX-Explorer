@@ -1,15 +1,15 @@
 import { useQuery } from "@apollo/client";
-import { Container, Pagination, Stack, Typography } from "@mui/material";
+import { Alert, Container, Pagination, Stack } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useState } from "react";
 import { Launch } from "../../gql/graphql";
 import { usePagination } from "../../hooks/usePagination";
-import { GET_LAUNCHES } from "../../queries/missions";
+import { GET_LAUNCHES } from "../../queries/queries";
+import { sortOptions } from "../../utils/constants";
 import { CardSkelton } from "../card-skeleton/CardSkelton";
 import { MissionCard } from "../mission-card/MissionCard";
 import { NumOfEntriesDropdown } from "../number-of-entries-dropdown/NumOfEntriesDropdown";
 import { PaginationControls } from "../pagination-controls/PaginationControls";
-import { sortOptions } from "../../utils/constants";
 import { SortDropdown, SortOptions } from "../sort-dropdown/SortDropdown";
 
 const gridProps = {
@@ -42,11 +42,11 @@ export function MissionList() {
     <>
       <Container sx={{ maxWidth: gridProps.maxWidth }}>
         <Stack direction="row" spacing={2}>
-        <SortDropdown
-          sortCriteria={sortCriteria}
-          onSortCriteriaChange={setSortCriteria}
-        />
-        <NumOfEntriesDropdown limit={limit} onLimitChange={handleLimitChange} />
+          <SortDropdown
+            sortCriteria={sortCriteria}
+            onSortCriteriaChange={setSortCriteria}
+          />
+          <NumOfEntriesDropdown limit={limit} onLimitChange={handleLimitChange} />
         </Stack>
         <Grid {...gridProps}>
           {loading ? (
@@ -58,7 +58,7 @@ export function MissionList() {
               ))}
             </>
           )}
-          {error && <Typography color="error">Error: {error.message}</Typography>}
+          {error && <Alert severity="error">Error: {error.message}</Alert>}
         </Grid>
       </Container>
       <Pagination
