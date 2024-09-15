@@ -18,6 +18,11 @@ a {
   color: inherit;
 }
 
+a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
 .star {
   position: absolute;
   background: var(--white);

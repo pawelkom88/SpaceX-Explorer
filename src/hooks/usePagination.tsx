@@ -11,5 +11,5 @@ export function usePagination(initialLimit: number) {
     setPage(1);
   };
 
-  return { page, setPage, limit, handleLimitChange, offset };
+  return { page, setPage,setLimit, limit, handleLimitChange, offset };
 }
